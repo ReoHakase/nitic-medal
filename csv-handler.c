@@ -4,7 +4,7 @@
 
 #define CHARSPERLINE 256
 
-int importCsv(struct _country *arrayPointer){
+int readCsv(struct _country *arrayPointer){
   FILE *filePointer;
   filePointer = fopen(CSVNAME, "r");
   if(filePointer == NULL) return FILEHANDLEERROR;
@@ -31,7 +31,7 @@ int importCsv(struct _country *arrayPointer){
   }
 }
 
-int exportCsv(struct _country *arrayPointer){
+int writeCsv(struct _country *arrayPointer){
   FILE *filePointer;
   filePointer = fopen(CSVNAME, "w");
   if(filePointer == NULL) return FILEHANDLEERROR;

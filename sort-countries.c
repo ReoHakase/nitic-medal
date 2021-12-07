@@ -3,6 +3,23 @@
 #include <ctype.h>
 #include "inc.h"
 
+void prompt(char *description, char *dest, char *defaultInput){
+  printf("%s > ", description);
+  char enteredText[STRLEN] = "";
+  scanf("%s", enteredText);
+  // while(strcmp(enteredText, "") == 0 && strcmp(defaultInput, "") != 0){
+  //   printf("** この項目は必ず入力する必要があります！ **\n%s > ", description);
+  //   scanf("%s", enteredText);
+  // }
+  if(strcmp(enteredText, "") == 0){
+    strcpy(dest, defaultInput);
+  }else{
+    strcpy(dest, enteredText);
+  }
+}
+
+
+
 void swapCountries(struct _country *a, struct _country *b){ // 2値の入れ替え
   struct _country initialA = *a;
   *a = *b;
@@ -117,7 +134,7 @@ int main(void){
   // };
 
   struct _country array[ARRLEN] = {0};
-  importCsv(array);
+  readCsv(array);
   // printCountries(array);
 
   // printf("%s\n", array[2].name);
@@ -134,6 +151,10 @@ int main(void){
   printf("[アルファベット順]\n");
   sort(array, compareNameAlphabetically);
   printCountries(array);
+
+  char input[STRLEN];
+  prompt("何か入力してください", input, "デフォルト文字列");
+  printf("Result: %s\n", input);
 
   return 0;
 }

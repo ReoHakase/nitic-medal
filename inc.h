@@ -20,9 +20,11 @@ struct _country {
 int isEmptyCountry(const struct _country *country);
 
 // CSVファイルから読み込み
-int importCsv(struct _country *arrayPointer);
+int readCsv(struct _country *arrayPointer);
 // CSVファイルへ書き込み
-int exportCsv(struct _country *arrayPointer);
+int writeCsv(struct _country *arrayPointer);
+
+void prompt(char *description, char *dest, char *defaultInput);
 
 // 2つの_country構造体の入れ替え
 void swapCountries(struct _country *a, struct _country *b);
