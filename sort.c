@@ -3,40 +3,6 @@
 #include <ctype.h>
 #include "inc.h"
 
-void prompt(char *description, char *dest, char *defaultInput){
-  printf("%s > ", description);
-  char enteredText[STRLEN] = "";
-  scanf("%s", enteredText);
-  // while(strcmp(enteredText, "") == 0 && strcmp(defaultInput, "") != 0){
-  //   printf("** この項目は必ず入力する必要があります！ **\n%s > ", description);
-  //   scanf("%s", enteredText);
-  // }
-  if(strcmp(enteredText, "") == 0){
-    strcpy(dest, defaultInput);
-  }else{
-    strcpy(dest, enteredText);
-  }
-}
-
-
-
-void swapCountries(struct _country *a, struct _country *b){ // 2値の入れ替え
-  struct _country initialA = *a;
-  *a = *b;
-  *b = initialA;
-}
-
-int isEmptyCountry(const struct _country *country){
-  static char zeroString[STRLEN] = {0};
-  return (
-    strcmp((*country).name, zeroString) == 0 &&
-    (*country).gold == 0 &&
-    (*country).silver == 0 &&
-    (*country).bronze == 0
-  );
-  // return (*country).name == 0;
-}
-
 void sort(struct _country *arrayPointer, const int (*funcPointer)(const struct _country *, const struct _country *)){
   // 配列(の先頭)を指すポインタによる配列自身のsizeofは配列全体の大きさを返さない？
   // int length = sizeof *arrayPointer / sizeof(int); // 配列の長さになってほしい
@@ -92,7 +58,7 @@ int compareNameAlphabetically(const struct _country *left, const struct _country
   return 1; // そのままにしとく
 }
 
-void printCountries(const struct _country *arrayPointer){
+void printTable(const struct _country *arrayPointer){
   printf("\033[4m    %32s %4s %4s %4s   (%5s)\033[0m\n", "国名", "金", "銀", "銅", "合計");
   int row = 1; // 行番号
   for(int i = 0; i < ARRLEN; i++){
@@ -108,53 +74,4 @@ void printCountries(const struct _country *arrayPointer){
       row++;
     }
   }
-}
-
-int main(void){
-
-  // struct _country array[ARRLEN] = {
-  //   {
-  //     "Japan",3,3,3
-  //   },
-  //   {
-  //     "Thailand",4,3,1
-  //   },
-  //   {
-  //     "United States",2,4,1
-  //   },
-  //   {
-  //     "China",3,2,4
-  //   },
-  //   {
-  //     "United Kingdom",2,2,1
-  //   },
-  //   {
-  //     "Zambia",1,2,4
-  //   }
-  // };
-
-  struct _country array[ARRLEN] = {0};
-  readCsv(array);
-  // printCountries(array);
-
-  // printf("%s\n", array[2].name);
-  // printf("isEmpty: %d| %x, %d, %d, %d\n", isEmptyCountry(&array[60]), array[60].name == 0, array[60].gold == 0, array[60].silver == 0, array[60].bronze == 0);
-
-  printf("[メダル順位]\n");
-  sort(array, compareMedalRank);
-  printCountries(array);
-
-  printf("[総獲得数順位]\n");
-  sort(array, compareTotal);
-  printCountries(array);
-
-  printf("[アルファベット順]\n");
-  sort(array, compareNameAlphabetically);
-  printCountries(array);
-
-  char input[STRLEN];
-  prompt("何か入力してください", input, "デフォルト文字列");
-  printf("Result: %s\n", input);
-
-  return 0;
 }

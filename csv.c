@@ -4,6 +4,8 @@
 
 #define CHARSPERLINE 256
 
+extern struct _country emptyCountry;
+
 int readCsv(struct _country *arrayPointer){
   FILE *filePointer;
   filePointer = fopen(CSVNAME, "r");
@@ -15,12 +17,21 @@ int readCsv(struct _country *arrayPointer){
       break;
     }else{
       // Rank,Country,Gold,Silver,Bronze
-      sscanf(currentLine, "%*d,%[^,],%d,%d,%d", 
+      int parsedVariables = sscanf(currentLine, "%*d,%[^,],%d,%d,%d", 
         arrayPointer[i].name, 
         &(arrayPointer[i].gold), 
         &(arrayPointer[i].silver), 
         &(arrayPointer[i].bronze)
       );
+      // 国名にカンマが含まれていて解析に失敗した時、
+      if(parsedVariables < 4){
+        sscanf(currentLine, "%*d,\"%[^\"]\",%d,%d,%d", 
+          arrayPointer[i].name, 
+          &(arrayPointer[i].gold), 
+          &(arrayPointer[i].silver), 
+          &(arrayPointer[i].bronze)
+        );
+      }
     }
   }
 
