@@ -16,7 +16,7 @@ int main(void){
   printTable(array);
 
   printf("[アルファベット順]\n");
-  sort(array, compareNameAlphabetically);
+  sort(array, compareName);
   printTable(array);
 
   return 0;

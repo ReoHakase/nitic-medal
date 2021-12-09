@@ -39,7 +39,7 @@ int compareMedalRank(const struct _country *left, const struct _country *right){
   }
 }
 
-int compareNameAlphabetically(const struct _country *left, const struct _country *right){
+int compareName(const struct _country *left, const struct _country *right){
   int minLength;
   if(strlen((*left).name) > strlen((*right).name)){
     minLength = strlen((*left).name);
