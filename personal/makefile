@@ -1,5 +1,5 @@
 CC = gcc
-DEPS = main.o csv.o swap-countries.o is-empty-country.o fill-empty.o count-countries.o
+DEPS = main.o sort.o csv.o array.o
 
 exe: $(DEPS)
 	$(CC) -o exe $(DEPS)

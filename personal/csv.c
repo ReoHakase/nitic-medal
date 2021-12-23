@@ -41,3 +41,36 @@ int readCsv(struct _country *arrayPointer){
     return 0;
   }
 }
+
+int writeCsv(struct _country *arrayPointer){
+  FILE *filePointer;
+  filePointer = fopen(CSVNAME, "w");
+  if(filePointer == NULL) return FILEHANDLEERROR;
+
+  
+
+  if(fclose(filePointer) == EOF){
+    return FILEHANDLEERROR;
+  }else{
+    return 0;
+  }
+}
+
+
+
+
+
+
+
+
+int addCountry(struct _country *arrayPointer, const struct _country *country){
+  int isAdded = 0;
+  for(int i = 0; i < ARRLEN; i++){
+    if(isEmptyCountry(&arrayPointer[i]) == 1){
+      arrayPointer[i] = *country;
+      isAdded = 1;
+      break;
+    }
+  }
+  return isAdded;
+}

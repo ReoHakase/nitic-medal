@@ -26,3 +26,11 @@ void swapCountries(struct _country *a, struct _country *b){ // 2値の入れ替�
   *a = *b;
   *b = initialA;
 }
+
+int countCountries(struct _country *arrayPointer){
+  int count = 0;
+  for(int i = 0; i < ARRLEN; i++){
+    if(!isEmptyCountry(&arrayPointer[i])) count++;
+  }
+  return count;
+}

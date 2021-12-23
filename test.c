@@ -4,7 +4,7 @@
 int main(void){
 
   struct _country array[ARRLEN];
-  // fillEmpty(array);
+  fillEmpty(array);
 
   readCsv(array);
 

@@ -3,6 +3,13 @@
 #define CSVNAME "count.csv" // 入出力で扱うcsvファイルの名前
 #define FILEHANDLEERROR -1 // ファイル入出力でエラーが出たときに返す(int)整数値
 
+// 国のデータを示す構造体
+
+// struct _country ABC = {
+//   "japan", 3, 2, 1
+// }
+// ABC.name // == "japan";
+
 struct _country {
   char name[STRLEN]; // 国名
   int gold; // 金メダルの数
@@ -10,24 +17,24 @@ struct _country {
   int bronze;
 };
 
-// 空かどうかを調べるための関数がこれ はしもとくん
-// Checks if the given country is empty or not.
-// Returns true when it is empty, false when it is not empty.
+// 可変長配列を実装するのはむずかしそうだから、固定長配列を使うしかない
+// このとき、固定長(ARRLEN)の配列の中に、与えられる個数が変わり得る要素を入れる必要がある
+// そこで、
+// 1. 配列を宣言するときにその長さを十分に大きくする
+// 2. 国のデータが入らない箇所は、それ特有の値をもつ構造体で埋める
+// struct _country emptyCountry = {
+//  {0}, 0, 0, 0
+// };
+// 0埋めかどうかを調べるための関数がこれ はしもとくん
 int isEmptyCountry(const struct _country *country);
 
 // 与えられたポインタが示す配列を空の国で埋める はしもとくん
-// Fills the given array with empty countries.
-// Returns nothing.
 void fillEmpty(struct _country *arrayPointer);
 
 // 与えられたポインタが示す配列が含む空ではない国の数を数えて返す  たーくん
-// Counts non-empty countries in the given array.
-// Returns the number of non-empty countries.
 int countCountries(struct _country *arrayPointer);
 
 // 2つの_country構造体の入れ替え ひゅうがじさん
-// Swaps two countries.
-// Returns nothing.
 void swapCountries(struct _country *a, struct _country *b);
 
 // 与えられたポインタが示す配列に国を追加 追加に成功したらtrue, 失敗したらfalseを返す
@@ -36,9 +43,7 @@ int addCountry(struct _country *arrayPointer, const struct _country *country);
 // -----
 
 // 与えられたポインタが示す配列へ、CSVファイルから読み込み 白田
-// Imports information of countries from the CSV file to the given array.
 int readCsv(struct _country *arrayPointer);
-
 // 与えられたポインタが示す配列から、CSVファイルへ書き込み
 int writeCsv(struct _country *arrayPointer);
 
