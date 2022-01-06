@@ -9,6 +9,6 @@ int isEmptyCountry(const struct _country *p) {
             else break;
         }
     }
-    if(i == 255) return 1;
+    if(i == STRLEN) return 1;
     else return 0;
 }
