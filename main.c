@@ -35,6 +35,10 @@ int main(void){
   sort(array, compareTotal);
   printTable(array);
 
+  printf("アルファベット順\n");
+  sort(array, compareName);
+  printTable(array);
+
   writeCsv(array);
 
   return 0;
