@@ -89,7 +89,7 @@ int main(void){
         printf("追加したい国の銅メダルの数を入力してください\n> ");
         scanf("%d", &(newCountry.bronze));
         addCountry(array, &newCountry);
-        // printf("国名%s, メダル数%d,%d,%d");
+        printf("国名: %s, メダル数: [金%d, 銀%d, 銅%d] を追加しました\n", newCountry.name, newCountry.gold, newCountry.silver, newCountry.bronze);
         break;
       default:
         printf("上記に当てはまる番号を入力してください\n");
