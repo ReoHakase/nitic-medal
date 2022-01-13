@@ -37,10 +37,10 @@ int addCountry(struct _country *arrayPointer, const struct _country *country);
 
 // 与えられたポインタが示す配列へ、CSVファイルから読み込み 白田
 // Imports information of countries from the CSV file to the given array.
-int readCsv(struct _country *arrayPointer);
+int readCsv(struct _country *arrayPointer, char *fileName);
 
 // 与えられたポインタが示す配列から、CSVファイルへ書き込み
-int writeCsv(struct _country *arrayPointer);
+int writeCsv(struct _country *arrayPointer, char *fileName);
 
 // -----
 

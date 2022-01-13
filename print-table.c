@@ -7,7 +7,7 @@ void printTable(const struct _country *arrayPointer) {
         j = isEmptyCountry(arrayPointer);
         if(j == 1) arrayPointer += 1;
         else {
-            printf("%10d%11s%12d%12d%12d\n", k, arrayPointer -> name, arrayPointer -> gold, arrayPointer -> silver, arrayPointer -> bronze);
+            printf("%10d%24s%12d%12d%12d\n", k, arrayPointer -> name, arrayPointer -> gold, arrayPointer -> silver, arrayPointer -> bronze);
             k += 1;
             arrayPointer += 1;
         }

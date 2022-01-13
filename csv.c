@@ -8,9 +8,9 @@
 
 // extern struct _country emptyCountry;
 
-int readCsv(struct _country *arrayPointer){
+int readCsv(struct _country *arrayPointer, char *fileName){
   FILE *filePointer;
-  filePointer = fopen(CSVNAME, "r");
+  filePointer = fopen(fileName, "r");
   if(filePointer == NULL) return FILEHANDLEERROR;
 
   for(int i = 0; i < ARRLEN; i++){
@@ -44,9 +44,9 @@ int readCsv(struct _country *arrayPointer){
   }
 }
 
-int writeCsv(struct _country *arrayPointer){
+int writeCsv(struct _country *arrayPointer, char *fileName){
   FILE *filePointer;
-  filePointer = fopen(EXPORTEDCSVNAME, "w");
+  filePointer = fopen(fileName, "w");
   if(filePointer == NULL) return FILEHANDLEERROR;
 
   fprintf(filePointer, "Rank,Country,Gold,Silver,Bronze\n");
